@@ -208,7 +208,6 @@ const NODES = [
     html: `
       <div class="vhead">
         <div><p class="kicker">Academy</p><h2>Watch</h2></div>
-        <span class="vhint"><kbd>Espaço</kbd> play / pausa</span>
       </div>
       <div class="video">
         <video controls playsinline preload="metadata" tabindex="-1" data-video="devscope" data-poster="video-poster"></video>
@@ -231,4 +230,4 @@ const NODES = [
 ];
 
 /* Texto do ecrã inicial */
-const HERO = { title: 'DevScope Academy', sub: 'ISEP · 2026', hint: 'Prime → para começar' };
+const HERO = { title: 'DevScope Academy', sub: 'ISEP · 2026', hint: '' };

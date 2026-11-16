@@ -82,6 +82,7 @@ svg#graph:active{cursor:grabbing}
 kbd{font:600 clamp(13px,.95vw,20px) var(--font);border:1px solid var(--ln1);border-radius:5px;padding:2px 6px;color:var(--kbd);background:var(--surf)}
 #hud .btn{border:1px solid var(--ln1);background:var(--surf);color:var(--ink);border-radius:8px;width:clamp(38px,2.6vw,54px);height:clamp(34px,2.3vw,48px);font-size:clamp(17px,1.3vw,26px);cursor:pointer}
 #hud .btn:hover{border-color:var(--hot)}
+#theme{margin-left:auto}
 body.idle #keys{opacity:0}
 #keys{transition:opacity .6s}
 
@@ -220,12 +221,6 @@ html.light .wide-photo img,html.light .photos img{box-shadow:0 8px 24px rgba(20,
   <button class="btn" id="next" title="Seguinte (→)" aria-label="Seguinte">›</button>
   <span id="count"></span>
   <div id="dots"></div>
-  <div id="keys">
-    <span><kbd>←</kbd> <kbd>→</kbd> navegar</span>
-    <span><kbd>Esc</kbd> mapa</span>
-    <span><kbd>F</kbd> ecrã inteiro</span>
-    <span><kbd>L</kbd> claro/escuro</span>
-  </div>
   <button class="btn" id="theme" title="Modo claro / escuro (L)" aria-label="Alternar modo claro/escuro"><span class="sun">☀</span><span class="moon">☾</span></button>
 </div>
 
@@ -444,7 +439,6 @@ const NODES = [
     html: `
       <div class="vhead">
         <div><p class="kicker">Academy</p><h2>Watch</h2></div>
-        <span class="vhint"><kbd>Espaço</kbd> play / pausa</span>
       </div>
       <div class="video">
         <video controls playsinline preload="metadata" tabindex="-1" data-video="devscope" data-poster="video-poster"></video>
@@ -467,7 +461,7 @@ const NODES = [
 ];
 
 /* Texto do ecrã inicial */
-const HERO = { title: 'DevScope Academy', sub: 'ISEP · 2026', hint: 'Prime → para começar' };
+const HERO = { title: 'DevScope Academy', sub: 'ISEP · 2026', hint: '' };
 </script>
 <script>
 (() => {
@@ -690,7 +684,7 @@ addEventListener('mousemove', wake); addEventListener('keydown', wake); wake();
 hydrate(document);
 document.querySelector('#hero h1').innerHTML = HERO.title.replace(/(\S+)$/, '<span>$1</span>');
 document.querySelector('#hero p').textContent = HERO.sub;
-document.querySelector('#hero small').textContent = HERO.hint;
+document.querySelector('#hero small').textContent = HERO.hint || '';
 const start = steps.findIndex(s => s.id === location.hash.slice(1));
 if (start > 0) idx = start;
 svg.call(zoom.transform, overviewTransform(true));
