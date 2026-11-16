@@ -219,19 +219,15 @@ const NODES = [
   },
   {
     id: 'what', type: 'child', parent: 'devscope', label: 'What we do',
-    kicker: 'products &nbsp;|&nbsp; operations &nbsp;|&nbsp; consulting', title: 'What we do',
+    kicker: 'Our focus', title: 'Data &amp; AI',
     html: `
       <div class="cards two big">
-        <div class="card"><b>Artificial Intelligence</b></div>
-        <div class="card"><b>Business Intelligence</b></div>
-        <div class="card"><b>Cloud Computing</b></div>
-        <div class="card"><b>Web and Mobile Apps</b></div>
+        <div class="card"><span class="ico">◧</span><b>Data</b></div>
+        <div class="card"><span class="ico">✦</span><b>AI</b></div>
       </div>`,
   },
+  { id: 'l-data', type: 'leaf', parent: 'what', label: 'Data' },
   { id: 'l-ai', type: 'leaf', parent: 'what', label: 'AI' },
-  { id: 'l-bi', type: 'leaf', parent: 'what', label: 'BI' },
-  { id: 'l-cloud', type: 'leaf', parent: 'what', label: 'Cloud' },
-  { id: 'l-apps', type: 'leaf', parent: 'what', label: 'Apps' },
   {
     id: 'who', type: 'child', parent: 'devscope', label: 'Who we are',
     kicker: 'DevScope', title: 'Who we are',
