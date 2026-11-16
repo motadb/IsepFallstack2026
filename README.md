@@ -1,0 +1,7 @@
+# DevScope Academy @ ISEP
+
+Apresentação interativa em forma de grafo: cada nó é um tópico.
+
+- **Apresentar:** abrir `index.html` no browser (ficheiro único, funciona offline).
+- **Navegar:** `→` / `←` (ou clicker), clicar num nó, `Esc` para o mapa, `F` para ecrã inteiro.
+- **Editar conteúdo:** `src/content.js` (imagens em `assets/`), depois `node build.mjs`.
