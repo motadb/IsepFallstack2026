@@ -601,8 +601,11 @@ function curvePath() {
 const isLight = () => document.documentElement.classList.contains('light');
 function hydrate(root) {
   root.querySelectorAll('video[data-video]').forEach(v => {
+    if (v.dataset.ready) return;                       // não reinicia o vídeo (ex.: ao mudar de tema)
+    v.dataset.ready = '1';
     v.src = videoURL(v.dataset.video); v.poster = IMG[v.dataset.poster] || '';
     v.addEventListener('focus', () => v.blur());
+    setTimeout(() => { if (v.isConnected) v.play().catch(() => {}); }, 650);   // arranca depois da transição; se o browser bloquear, fica em pausa (Espaço)
   });
   root.querySelectorAll('img[data-img]').forEach(im => {
     const n = im.dataset.img;
