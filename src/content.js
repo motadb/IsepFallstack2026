@@ -203,16 +203,19 @@ const NODES = [
 
   /* ---------- Vídeo ---------- */
   {
-    id: 'video', type: 'main', parent: 'root', label: 'Video',
-    kicker: 'Watch', title: '',
+    id: 'video', type: 'main', parent: 'root', label: 'Video', wide: true,
+    kicker: '', title: '',
     html: `
+      <div class="vhead">
+        <div><p class="kicker">Academy</p><h2>Watch</h2></div>
+        <a class="ytlink" href="https://youtu.be/CbRMyTzxmFM" target="_blank" rel="noopener">▶ Abrir no YouTube ↗</a>
+      </div>
       <div class="video">
         <div class="fb">Sem ligação à internet?<br>Abre o vídeo diretamente no YouTube.</div>
         <iframe src="https://www.youtube-nocookie.com/embed/CbRMyTzxmFM?rel=0&modestbranding=1&playsinline=1"
           title="DevScope video" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"
           allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe>
-      </div>
-      <a class="ytlink" href="https://youtu.be/CbRMyTzxmFM" target="_blank" rel="noopener">▶ Abrir no YouTube ↗</a>`,
+      </div>`,
   },
 
   /* ---------- Thank you ---------- */

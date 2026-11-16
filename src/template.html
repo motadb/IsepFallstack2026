@@ -96,6 +96,7 @@ body:not(.at-root) #hero{opacity:0;transform:translateY(20px)}
 /* ---- painel ---- */
 #panel{position:fixed;top:0;right:0;bottom:0;width:min(60vw,1150px);z-index:3;display:flex;align-items:center;
   padding:9vh 4.2vw 11vh 3vw;pointer-events:none;opacity:0;transform:translateX(40px);transition:opacity .5s,transform .6s cubic-bezier(.2,.7,.2,1)}
+#panel.wide{width:min(80vw,1500px)}
 #panel.open{opacity:1;transform:none;pointer-events:auto}
 #panel::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent 0,rgba(var(--veil),.97) 6%,rgba(var(--veil),.98) 100%);z-index:-1}
 #content{width:100%;max-height:100%;animation:rise .6s cubic-bezier(.2,.7,.2,1) both}
@@ -172,10 +173,14 @@ mark{background:var(--mark);color:#000;padding:0 .18em;border-radius:.08em}
 .qr{display:flex;flex-direction:column;align-items:center;gap:.6em;font-size:clamp(15px,1.2vw,22px);color:var(--dim)}
 .qr img{width:clamp(150px,15vw,250px);background:#fff;padding:10px;border-radius:14px;display:block}
 
-.video{position:relative;aspect-ratio:16/9;width:min(100%,calc(64vh*16/9));background:#000;border-radius:14px;overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,.4)}
+.video{position:relative;aspect-ratio:16/9;width:min(100%,calc(58vh*16/9));margin:0 auto;background:#000;border-radius:14px;overflow:hidden;box-shadow:0 0 0 1px rgba(255,255,255,.1),0 20px 60px rgba(0,0,0,.55),0 0 80px rgba(248,60,16,.18)}
+#panel.wide h2{margin-bottom:.4em}
+.vhead{display:flex;align-items:flex-end;justify-content:space-between;gap:1em;width:min(100%,calc(58vh*16/9));margin:0 auto .5em}
+.vhead .kicker{margin-bottom:.4em}
+.vhead h2{margin:0}
 .video iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
 .video .fb{position:absolute;inset:0;display:grid;place-items:center;text-align:center;color:#bbb;font-size:clamp(16px,1.4vw,26px);padding:1em;line-height:1.4}
-.ytlink{display:inline-block;margin-top:1em;font-size:clamp(16px,1.3vw,24px);font-weight:650;color:var(--hot);text-decoration:none;border:1px solid var(--hot);border-radius:99px;padding:.5em 1.1em}
+.ytlink{display:inline-block;white-space:nowrap;font-size:clamp(16px,1.3vw,24px);font-weight:650;color:var(--hot);text-decoration:none;border:1px solid var(--hot);border-radius:99px;padding:.5em 1.1em}
 .ytlink:hover{background:var(--hot);color:#fff}
 html.light .paper{box-shadow:0 0 0 1px var(--cardline),0 10px 30px rgba(20,20,40,.08)}
 html.light .timeline .yr img{box-shadow:0 0 0 1px var(--cardline),0 4px 14px rgba(232,54,10,.25)}
@@ -339,7 +344,7 @@ function focusTransform(n) {
   const group = [n, ...kids(n.id), ...(n.type === 'child' ? [byId.get(n.parent)] : [])];
   const cx = d3.mean(group, g => g.hx), cy = d3.mean(group, g => g.hy);
   const ext = Math.max(160, d3.max(group, g => Math.hypot(g.hx - cx, g.hy - cy)) + 150);
-  const freeW = narrow ? W : W - Math.min(W * .6, 1150) - W * .01, freeH = narrow ? H * .34 : H - 150;
+  const freeW = narrow ? W : W - (n.wide ? Math.min(W * .8, 1500) : Math.min(W * .6, 1150)) - W * .01, freeH = narrow ? H * .34 : H - 150;
   const k = Math.max(.7, Math.min(2.1, Math.min(freeW, freeH) / (2 * ext)));
   return d3.zoomIdentity.translate(freeW / 2 - k * cx, (narrow ? 0 : 70) + freeH / 2 - k * cy).scale(k);
 }
@@ -381,6 +386,7 @@ function render() {
   document.body.classList.toggle('at-root', isRoot && !mapMode);
   const showPanel = !isRoot && !mapMode;
   panel.classList.toggle('open', showPanel);
+  panel.classList.toggle('wide', !!n.wide);
   if (showPanel) {
     const fresh = content.cloneNode(false);           // reinicia a animação de entrada
     fresh.innerHTML = (n.kicker ? `<p class="kicker">${n.kicker}</p>` : '') +
