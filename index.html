@@ -195,6 +195,9 @@ html.light .wide-photo img,html.light .photos img{box-shadow:0 8px 24px rgba(20,
   #panel{padding-bottom:96px}
   #hud{background:linear-gradient(0deg,rgba(var(--veil),.95) 60%,transparent);padding-top:18px;bottom:0;left:0;right:0;padding-left:16px;padding-right:16px;padding-bottom:14px}
   .flow{flex-wrap:wrap;white-space:normal}
+  .timeline{flex-wrap:wrap;row-gap:14px}
+  .timeline .yr{flex:0 0 18%}
+  .timeline .gap{display:none}
   #panel{top:auto;left:0;width:auto;height:66vh;padding:5vh 22px 70px;align-items:flex-start;overflow:auto}
   #panel::before{background:linear-gradient(180deg,transparent 0,rgba(var(--veil),.93) 9%,rgba(var(--veil),.98) 100%)}
   .cards.three,.cards.four{grid-template-columns:repeat(2,1fr)}
@@ -327,7 +330,7 @@ const NODES = [
     html: `
       <div class="timeline">
         <div class="yr first"><b>2015</b></div><div class="gap">···</div>
-        ${[2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025].map(y => `<div class="yr">${img('badge')}<b>${y}</b></div>`).join('')}
+        ${[2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026].map(y => `<div class="yr">${img('badge')}<b>${y}</b></div>`).join('')}
       </div>`,
   },
   {

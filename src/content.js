@@ -95,7 +95,7 @@ const NODES = [
     html: `
       <div class="timeline">
         <div class="yr first"><b>2015</b></div><div class="gap">···</div>
-        ${[2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025].map(y => `<div class="yr">${img('badge')}<b>${y}</b></div>`).join('')}
+        ${[2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026].map(y => `<div class="yr">${img('badge')}<b>${y}</b></div>`).join('')}
       </div>`,
   },
   {
