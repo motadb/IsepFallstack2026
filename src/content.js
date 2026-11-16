@@ -231,3 +231,55 @@ const NODES = [
 
 /* Texto do ecrã inicial */
 const HERO = { title: 'DevScope Academy', sub: 'ISEP · 2026', hint: '' };
+
+/* ------------------------------------------------------------------
+   TRADUÇÃO PT-PT
+   PT: texto em inglês (exatamente como aparece) -> português.
+   PT_NODES: substituições completas para blocos com formatação (ex.: <mark>).
+------------------------------------------------------------------- */
+const PT = {
+  // nós / etiquetas
+  'What we do': 'O que fazemos', 'Who we are': 'Quem somos', 'Where we are': 'Onde estamos', 'Clients': 'Clientes',
+  'Core competencies': 'Competências-chave', 'Innovation jumpstarter': 'Impulsionador de inovação',
+  'Academy footprint': 'Impacto da Academy', 'Careers': 'Carreiras', 'Internship program': 'Programa de estágio',
+  'Learning path': 'Percurso de aprendizagem', 'How it will happen': 'Como vai acontecer', 'How we work': 'Como trabalhamos',
+  'Share & learn': 'Partilhar e aprender', 'Team': 'Equipa', 'Enjoy each mile': 'Aproveita cada quilómetro',
+  'Video': 'Vídeo', 'Thank you': 'Obrigado',
+  'Data': 'Dados', 'AI': 'IA', 'Ideas': 'Ideias', 'Research': 'Investigação', 'Talent': 'Talento', 'Culture': 'Cultura',
+  'Consultants': 'Consultores', 'Developers': 'Programadores', 'Project managers': 'Gestores de projeto', 'Researchers': 'Investigadores',
+  'Case study': 'Caso de estudo', 'Mentor': 'Mentor', 'Report': 'Relatório', 'Experiments': 'Experiências', 'The Goal': 'O Objetivo',
+  'Daily': 'Diária', 'Weekly': 'Semanal', 'Communication': 'Comunicação', 'Development': 'Desenvolvimento', 'Reporting': 'Relatórios',
+  // antetítulos e títulos
+  'Who': 'Quem', 'Our focus': 'O nosso foco', 'Data & AI': 'Dados & IA', 'How': 'Como', 'What': 'O quê', 'Since 2015': 'Desde 2015',
+  'Who we work with': 'Com quem trabalhamos', 'Our core competencies': 'As nossas competências-chave',
+  'Academy as an innovation jumpstarter': 'A Academy como impulsionadora de inovação',
+  'Where alumni go': 'Para onde vão os alumni', 'The internship program': 'O programa de estágio',
+  'The goal and the learning path': 'O objetivo e o percurso de aprendizagem', 'Watch': 'Ver',
+  // cartões
+  'lean & agile mindset': 'mentalidade lean e ágil', 'focus on innovation': 'foco na inovação', 'state-of-the-art technology': 'tecnologia de ponta',
+  'Consulting': 'Consultoria', 'Services': 'Serviços', 'Integration': 'Integração', 'App Dev.': 'Desenvolvimento de apps',
+  'Products': 'Produtos', 'PowerBI Tools': 'Ferramentas PowerBI', 'Operations': 'Operações', 'Support 24/7': 'Suporte 24/7',
+  'Platform teams': 'Equipas de plataforma', 'Technology adoption': 'Adoção de tecnologia',
+  'Individual Case Study': 'Caso de estudo individual', 'Dedicated Mentor': 'Mentor dedicado', 'Team Support': 'Apoio da equipa', 'Report review': 'Revisão do relatório',
+  'Ramp-up': 'Arranque', 'Daily Meeting': 'Reunião diária', 'Focus': 'Foco', 'Doing since last meeting': 'O que fiz desde a última reunião',
+  'Today': 'Hoje', 'Any issues?': 'Algum problema?', 'Weekly Meeting': 'Reunião semanal', 'Overall progress': 'Progresso geral',
+  'Discuss next steps': 'Discutir próximos passos', 'Retrospective': 'Retrospetiva',
+  'Show your progress to everyone': 'Mostrar o progresso a todos', 'Gather feedback': 'Recolher feedback',
+  // gráfico
+  'Unknown': 'Desconhecido', 'Time': 'Tempo',
+  // contactos
+  'DevScope Academy Manager': 'Responsável pela DevScope Academy',
+};
+const PT_NODES = {
+  devscope: { html: `
+      <p class="lead">Especializamo-nos em ajudar empresas a alcançar <mark>resultados extraordinários</mark>.</p>
+      <div class="wide-photo">${img('room', 'DevScope Academy')}</div>` },
+  alumni: { html: `
+      <div class="stat"><span class="num">72</span><span class="what">Alumni da Academy</span></div>
+      <div class="stat sub"><span class="num">42%</span><span class="what">da DevScope</span></div>` },
+  share: { html: `<p class="quote">Quanto mais <mark>partilhas</mark>, mais <mark>aprendes</mark></p>` },
+  road: { html: `
+      <div class="wide-photo tall">${img('road')}</div>
+      <p class="lead">..Aproveita cada <mark>quilómetro</mark> do percurso de aprendizagem..</p>` },
+  thanks: { title: '<span class="br">&lt;</span>Obrigado!<span class="br">&gt;</span>' },
+};

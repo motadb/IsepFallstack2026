@@ -82,7 +82,7 @@ svg#graph:active{cursor:grabbing}
 kbd{font:600 clamp(13px,.95vw,20px) var(--font);border:1px solid var(--ln1);border-radius:5px;padding:2px 6px;color:var(--kbd);background:var(--surf)}
 #hud .btn{border:1px solid var(--ln1);background:var(--surf);color:var(--ink);border-radius:8px;width:clamp(38px,2.6vw,54px);height:clamp(34px,2.3vw,48px);font-size:clamp(17px,1.3vw,26px);cursor:pointer}
 #hud .btn:hover{border-color:var(--hot)}
-#theme{margin-left:auto}
+#lang{margin-left:auto;width:auto!important;padding:0 .8em;font:700 clamp(13px,.95vw,18px) var(--font);letter-spacing:.04em}
 body.idle #keys{opacity:0}
 #keys{transition:opacity .6s}
 
@@ -221,6 +221,7 @@ html.light .wide-photo img,html.light .photos img{box-shadow:0 8px 24px rgba(20,
   <button class="btn" id="next" title="Seguinte (→)" aria-label="Seguinte">›</button>
   <span id="count"></span>
   <div id="dots"></div>
+  <button class="btn" id="lang" title="Português" aria-label="Mudar idioma">PT</button>
   <button class="btn" id="theme" title="Modo claro / escuro (L)" aria-label="Alternar modo claro/escuro"><span class="sun">☀</span><span class="moon">☾</span></button>
 </div>
 
@@ -363,6 +364,36 @@ function curvePath() {
   }
   return d;
 }
+/* ---------- idioma ---------- */
+let LANG = 'en';
+NODES.forEach(n => { n.pt = PT_NODES[n.id]; });
+const L = s => (LANG === 'pt' && PT[s] != null) ? PT[s] : s;
+function trHTML(h) {
+  if (LANG !== 'pt' || !h) return h;
+  const t = document.createElement('template'); t.innerHTML = h;
+  const w = document.createTreeWalker(t.content, NodeFilter.SHOW_TEXT); let x;
+  while ((x = w.nextNode())) { const k = x.nodeValue.trim(); if (k && PT[k] != null) x.nodeValue = x.nodeValue.replace(k, PT[k]); }
+  return t.innerHTML;
+}
+const fld = (n, f) => (LANG === 'pt' && n.pt && n.pt[f] != null) ? n.pt[f] : trHTML(n[f]);
+const UI = {
+  en: { prev: 'Previous (←)', next: 'Next (→)', theme: 'Light / dark mode (L)', lang: 'Português (T)', btn: 'PT', map: 'Presentation topic map' },
+  pt: { prev: 'Anterior (←)', next: 'Seguinte (→)', theme: 'Modo claro / escuro (L)', lang: 'English (T)', btn: 'EN', map: 'Mapa de tópicos da apresentação' },
+};
+function setLang(l, save = true) {
+  LANG = l; const u = UI[l];
+  document.documentElement.lang = l === 'pt' ? 'pt-PT' : 'en';
+  nodeSel.select('text.label').text(d => L(d.label));
+  [...dots.children].forEach((b, i) => { b.title = L(steps[i].label); b.setAttribute('aria-label', L(steps[i].label)); });
+  const set = (id, t) => { const e = document.getElementById(id); e.title = t; e.setAttribute('aria-label', t); };
+  set('prev', u.prev); set('next', u.next); set('theme', u.theme); set('lang', u.lang);
+  document.getElementById('lang').textContent = u.btn;
+  svg.attr('aria-label', u.map);
+  if (save) { try { localStorage.setItem('ds-lang', l); } catch (e) {} }
+  render();
+}
+document.getElementById('lang').onclick = () => setLang(LANG === 'pt' ? 'en' : 'pt');
+
 const isLight = () => document.documentElement.classList.contains('light');
 function hydrate(root) {
   root.querySelectorAll('video[data-video]').forEach(v => {
@@ -399,8 +430,8 @@ function render() {
   panel.classList.toggle('wide', !!n.wide);
   if (showPanel) {
     const fresh = content.cloneNode(false);           // reinicia a animação de entrada
-    fresh.innerHTML = (n.kicker ? `<p class="kicker">${n.kicker}</p>` : '') +
-      (n.title ? `<h2>${n.title}</h2>` : '') + (n.html || '').replace('__CURVE__', curvePath());
+    const k = fld(n, 'kicker'), t = fld(n, 'title');
+    fresh.innerHTML = (k ? `<p class="kicker">${k}</p>` : '') + (t ? `<h2>${t}</h2>` : '') + (fld(n, 'html') || '').replace('__CURVE__', curvePath());
     hydrate(fresh); panel.replaceChild(fresh, panel.firstElementChild);
   }
   // realce no grafo
@@ -438,6 +469,7 @@ addEventListener('keydown', e => {
   else if (k === 'Escape' || k === 'm' || k === 'M' || k === 'o' || k === 'O') { if (!document.fullscreenElement || k !== 'Escape') toggleMap(); }
   else if (k === 'f' || k === 'F') fullscreen();
   else if (k === 'l' || k === 'L') setTheme(!isLight());
+  else if (k === 't' || k === 'T') setLang(LANG === 'pt' ? 'en' : 'pt');
   else if (k === 'Home') go(steps[0]);
   else if (k === 'End') go(steps[steps.length - 1]);
 });
@@ -450,13 +482,14 @@ addEventListener('mousemove', wake); addEventListener('keydown', wake); wake();
 /* ---------- arranque ---------- */
 { let t = null; try { t = localStorage.getItem('ds-theme'); } catch (e) {} if (t === 'light' || /[?&]light\b/.test(location.search)) document.documentElement.classList.add('light'); }
 hydrate(document);
+{ let l = null; try { l = localStorage.getItem('ds-lang'); } catch (e) {} const m = /[?&]lang=(pt|en)\b/.exec(location.search); if (m) l = m[1]; if (l === 'pt') { LANG = 'pt'; } }
 document.querySelector('#hero h1').innerHTML = HERO.title.replace(/(\S+)$/, '<span>$1</span>');
 document.querySelector('#hero p').textContent = HERO.sub;
 document.querySelector('#hero small').textContent = HERO.hint || '';
 const start = steps.findIndex(s => s.id === location.hash.slice(1));
 if (start > 0) idx = start;
 svg.call(zoom.transform, overviewTransform(true));
-render();
+setLang(LANG, false);
 })();
 </script>
 </body>
