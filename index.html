@@ -228,6 +228,16 @@ mark{background:var(--mark);color:#000;padding:0 .18em;border-radius:.08em}
 .road .ms.end{justify-self:end;flex-direction:row-reverse}
 .road .summer{display:flex;align-items:center;justify-content:center;gap:.5em;height:clamp(32px,4.6vh,54px);border:2px dashed #ff9a1f;border-radius:8px;color:#ff9a1f;font-size:clamp(13px,1.15vw,21px);font-weight:700;z-index:1;text-align:center;line-height:1.1}
 .mini svg{width:1.15em;height:1.15em;vertical-align:-.2em;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;display:inline-block}
+.teaser{display:flex;align-items:center;flex-wrap:wrap;gap:clamp(8px,1vw,18px);margin-top:clamp(14px,2vh,28px);padding:clamp(10px,1.4vw,22px) clamp(14px,1.8vw,30px);border:2px dashed var(--hot);border-radius:18px;background:var(--hotbg)}
+.tz-n{font-size:clamp(34px,4vw,76px);font-weight:850;letter-spacing:-.03em;line-height:1}
+.tz-lt{font-size:clamp(30px,3.4vw,64px);font-weight:800;color:var(--hot);line-height:1}
+.tz-x{min-width:2.1ch;text-align:center;font-size:clamp(34px,4vw,76px);font-weight:850;line-height:1;padding:.08em .22em;border-radius:.14em;background:var(--mark);color:#000;font-variant-numeric:tabular-nums;overflow:hidden;display:inline-block}
+.tz-x.tick{animation:tick .11s ease-out}
+@keyframes tick{from{transform:translateY(-55%);opacity:.2;filter:blur(3px)}to{transform:none;opacity:1;filter:none}}
+.tz-txt{display:flex;flex-direction:column;gap:.15em;margin-left:clamp(6px,1vw,20px)}
+.tz-txt b{font-size:clamp(20px,1.9vw,36px);font-weight:800}
+.tz-txt span{font-size:clamp(14px,1.2vw,22px);color:var(--dim)}
+@media (prefers-reduced-motion:reduce){.tz-x.tick{animation:none}}
 html.light .paper{box-shadow:0 0 0 1px var(--cardline),0 10px 30px rgba(20,20,40,.08)}
 html.light .timeline .yr img{box-shadow:0 0 0 1px var(--cardline),0 4px 14px rgba(232,54,10,.25)}
 html.light .qr img{box-shadow:0 0 0 1px var(--cardline)}
@@ -466,6 +476,10 @@ const NODES = [
         <div class="card row"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="8" width="14" height="10" rx="2.5"/><path d="M12 4v4M9 13h.01M15 13h.01M3 12v2M21 12v2"/></svg></span><b>AI Agents</b></div>
         <div class="card row"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 5-3 8-7 10-4-2-7-5-7-10V6z"/><path d="M9.5 12l2 2 3.5-4"/></svg></span><b>Cybersecurity AI</b></div>
         <div class="card row"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 8l-4 4 4 4M16 8l4 4-4 4M14 5l-4 14"/></svg></span><b>Dev</b></div>
+      </div>
+      <div class="teaser">
+        <span class="tz-n">10</span><span class="tz-lt">&lt;</span><span class="tz-x" data-roll="11-29" aria-label="?">??</span><span class="tz-lt">&lt;</span><span class="tz-n">30</span>
+        <div class="tz-txt"><b>Open spots</b><span>Guess the number</span></div>
       </div>`,
   },
 
@@ -573,7 +587,7 @@ const PT = {
   // nós / etiquetas
   'Porto to the world': 'Do Porto para o mundo', 'Roadmap': 'Roteiro', 'Start: February · Report delivered: end of May / early June': 'Início: fevereiro · Relatório entregue: fim de maio / início de junho',
   'Feb': 'Fev', 'Apr': 'Abr', 'May': 'Mai', 'Summer': 'Verão', 'R&D': 'I&D', 'Report (ongoing)': 'Relatório (contínuo)', 'Final writing': 'Escrita final',
-  'Start': 'Início', 'Delivery': 'Entrega', 'Summer vacations': 'Férias de verão', 'Perks': 'Regalias', 'Interns are treated like colleagues': 'Os estagiários são tratados como colaboradores',
+  'Start': 'Início', 'Delivery': 'Entrega', 'Summer vacations': 'Férias de verão', 'Perks': 'Regalias', 'Open spots': 'Vagas', 'Guess the number': 'Adivinha o número', 'Interns are treated like colleagues': 'Os estagiários são tratados como colaboradores',
   'Free access to the office': 'Acesso livre ao escritório', 'Hybrid work model': 'Modelo de trabalho híbrido', 'Fun events': 'Eventos de convívio',
   'A reward for every intern, matching their effort': 'Um prémio para cada estagiário, à altura do seu esforço',
   'Effort is what we value.': 'O esforço é o que valorizamos.', 'Projects': 'Projetos', 'What you will work on': 'Em que vais trabalhar',
@@ -791,6 +805,18 @@ function setLang(l, save = true) {
 document.getElementById('lang').onclick = () => setLang(LANG === 'pt' ? 'en' : 'pt');
 
 const isLight = () => document.documentElement.classList.contains('light');
+let rollT = null;
+function startRoll(root) {
+  clearInterval(rollT);
+  const el = root.querySelector('.tz-x[data-roll]');
+  if (!el || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const [lo, hi] = el.dataset.roll.split('-').map(Number); let last = 0;
+  rollT = setInterval(() => {
+    if (!el.isConnected) return clearInterval(rollT);
+    let n; do { n = lo + Math.floor(Math.random() * (hi - lo + 1)); } while (n === last);
+    last = n; el.textContent = n; el.classList.remove('tick'); void el.offsetWidth; el.classList.add('tick');
+  }, 130);
+}
 function hydrate(root) {
   root.querySelectorAll('video[data-video]').forEach(v => {
     if (v.dataset.ready) return;                       // não reinicia o vídeo (ex.: ao mudar de tema)
@@ -827,7 +853,7 @@ function render() {
     const fresh = content.cloneNode(false);           // reinicia a animação de entrada
     const k = fld(n, 'kicker'), t = fld(n, 'title');
     fresh.innerHTML = (k ? `<p class="kicker">${k}</p>` : '') + (t ? `<h2>${t}</h2>` : '') + (fld(n, 'html') || '').replace('__CURVE__', curvePath());
-    hydrate(fresh); panel.replaceChild(fresh, panel.firstElementChild);
+    hydrate(fresh); panel.replaceChild(fresh, panel.firstElementChild); startRoll(fresh);
   }
   // realce no grafo
   const near = new Set([n.id, n.parent, ...kids(n.id).map(k => k.id)]);
