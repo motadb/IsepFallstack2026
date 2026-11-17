@@ -238,6 +238,18 @@ mark{background:var(--mark);color:#000;padding:0 .18em;border-radius:.08em}
 .tz-txt b{font-size:clamp(20px,1.9vw,36px);font-weight:800}
 .tz-txt span{font-size:clamp(14px,1.2vw,22px);color:var(--dim)}
 @media (prefers-reduced-motion:reduce){.tz-x.tick{animation:none}}
+.hubwrap{width:min(100%,calc(46vh*760/260 + 8vw));margin:0 auto}
+.hub{width:100%;height:auto;display:block;overflow:visible}
+.hub .ln{fill:none;stroke:var(--hot);stroke-width:2.6;stroke-linecap:round;stroke-dasharray:3 10;opacity:.85;animation:flow 2.2s linear infinite}
+.hub .pill{fill:var(--surf);stroke:var(--cardline);stroke-width:1.6}
+.hub .ic{fill:none;stroke:var(--hot);stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.hub .sat text{fill:var(--ink);font:750 21px var(--font)}
+.hub .hcore{fill:var(--hot);stroke:var(--bg);stroke-width:4}
+.hub .hai{fill:#fff;font:850 46px var(--font);letter-spacing:-.02em}
+.hub .hring{fill:none;stroke:var(--hot);stroke-width:2.5;transform-box:fill-box;transform-origin:center;animation:hripple 2.8s ease-out infinite}
+@keyframes hripple{from{transform:scale(1);opacity:.75}to{transform:scale(1.9);opacity:0}}
+.hub .hring.r2{animation-delay:1.4s}
+@media (prefers-reduced-motion:reduce){.hub .ln,.hub .hring{animation:none}.hub .hring{opacity:.35}}
 html.light .paper{box-shadow:0 0 0 1px var(--cardline),0 10px 30px rgba(20,20,40,.08)}
 html.light .timeline .yr img{box-shadow:0 0 0 1px var(--cardline),0 4px 14px rgba(232,54,10,.25)}
 html.light .qr img{box-shadow:0 0 0 1px var(--cardline)}
