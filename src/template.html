@@ -97,7 +97,7 @@ body:not(.at-root) #hero{opacity:0;transform:translateY(20px)}
 /* ---- painel ---- */
 #panel{position:fixed;top:0;right:0;bottom:0;width:min(60vw,1150px);z-index:3;display:flex;align-items:center;
   padding:9vh 4.2vw 11vh 3vw;pointer-events:none;opacity:0;transform:translateX(40px);transition:opacity .5s,transform .6s cubic-bezier(.2,.7,.2,1)}
-#panel.wide{width:min(80vw,1500px)}
+#panel.wide{width:min(76vw,1450px)}
 #panel.open{opacity:1;transform:none;pointer-events:auto}
 #panel::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent 0,rgba(var(--veil),.97) 6%,rgba(var(--veil),.98) 100%);z-index:-1}
 #content{width:100%;max-height:100%;animation:rise .6s cubic-bezier(.2,.7,.2,1) both}
@@ -209,6 +209,22 @@ mark{background:var(--mark);color:#000;padding:0 .18em;border-radius:.08em}
 .cards.perks .card{padding:clamp(12px,1.2vw,22px)}
 .cards.projects .card b{font-size:clamp(24px,2.4vw,46px)}
 .cards.projects .ico{font-size:clamp(40px,4vw,76px)}
+.road{display:grid;grid-template-columns:clamp(96px,9vw,170px) repeat(24,1fr);grid-auto-rows:auto;row-gap:clamp(8px,1.2vh,16px);align-items:center;margin-top:.6em}
+.road .mh{grid-row:1;font-size:clamp(14px,1.2vw,22px);font-weight:700;color:var(--ink3);padding:0 .4em .5em;border-left:1px solid var(--line)}
+.road .mh.sm{color:#ff9a1f}
+.road .ll{grid-column:1;font-size:clamp(14px,1.25vw,23px);font-weight:700;color:var(--ink2);padding-right:.5em}
+.road .trk{grid-column:2/26;height:clamp(40px,5.6vh,64px);background:repeating-linear-gradient(90deg,var(--line) 0 1px,transparent 1px calc(100%/6));border-radius:8px}
+.road .trk{background-color:var(--card)}
+.road .bar{height:clamp(32px,4.6vh,54px);border-radius:8px;display:flex;align-items:center;justify-content:center;padding:0 .5em;font-size:clamp(13px,1.15vw,21px);font-weight:700;color:#fff;white-space:nowrap;overflow:hidden;z-index:1}
+.road .bar.rd{background:#3b6bff}
+.road .bar.dev{background:var(--hot)}
+.road .bar.rep-on{background:repeating-linear-gradient(135deg,rgba(194,59,216,.38) 0 7px,rgba(194,59,216,.2) 7px 14px);color:var(--ink);border:1px solid rgba(194,59,216,.6)}
+.road .bar.rep-fin{background:#c23bd8}
+.road .ms{display:flex;align-items:center;gap:.5em;font-size:clamp(13px,1.15vw,21px);font-weight:700;color:var(--ink);z-index:1;white-space:nowrap}
+.road .ms i{width:.8em;height:.8em;border-radius:50%;background:var(--hot);box-shadow:0 0 0 4px rgba(248,60,16,.25);flex:none}
+.road .ms.end{justify-self:end;flex-direction:row-reverse}
+.road .summer{display:flex;align-items:center;justify-content:center;gap:.5em;height:clamp(32px,4.6vh,54px);border:2px dashed #ff9a1f;border-radius:8px;color:#ff9a1f;font-size:clamp(13px,1.15vw,21px);font-weight:700;z-index:1;text-align:center;line-height:1.1}
+.mini svg{width:1.15em;height:1.15em;vertical-align:-.2em;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;display:inline-block}
 html.light .paper{box-shadow:0 0 0 1px var(--cardline),0 10px 30px rgba(20,20,40,.08)}
 html.light .timeline .yr img{box-shadow:0 0 0 1px var(--cardline),0 4px 14px rgba(232,54,10,.25)}
 html.light .qr img{box-shadow:0 0 0 1px var(--cardline)}
@@ -371,7 +387,7 @@ function focusTransform(n) {
   const group = [n, ...kids(n.id), ...(n.type === 'child' ? [byId.get(n.parent)] : [])];
   const cx = d3.mean(group, g => g.hx), cy = d3.mean(group, g => g.hy);
   const ext = Math.max(160, d3.max(group, g => Math.hypot(g.hx - cx, g.hy - cy)) + 150);
-  const freeW = narrow ? W : W - (n.wide ? Math.min(W * .8, 1500) : Math.min(W * .6, 1150)) - W * .01, freeH = narrow ? H * .34 : H - 150;
+  const freeW = narrow ? W : W - (n.wide ? Math.min(W * .76, 1450) : Math.min(W * .6, 1150)) - W * .01, freeH = narrow ? H * .34 : H - 150;
   const k = Math.max(.7, Math.min(2.1, Math.min(freeW, freeH) / (2 * ext)));
   return d3.zoomIdentity.translate(freeW / 2 - k * cx, (narrow ? 0 : 70) + freeH / 2 - k * cy).scale(k);
 }

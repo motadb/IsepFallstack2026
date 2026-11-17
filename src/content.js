@@ -218,6 +218,18 @@ const NODES = [
   { id: 'l-weekly', type: 'leaf', parent: 'how', label: 'Weekly' },
   { id: 'l-check', type: 'leaf', parent: 'how', label: 'Checkpoints' },
 
+  /* ---------- Roadmap ---------- */
+  {
+    id: 'roadmap', type: 'child', parent: 'how', label: 'Roadmap', wide: true,
+    kicker: 'Academy', title: 'Roadmap',
+    html: `
+      <p class="lead">Start: February · Report delivered: end of May / early June</p>
+      <div class="road">
+        <div class="mh" style="grid-column:2/5">Feb</div><div class="mh" style="grid-column:6/9">Mar</div><div class="mh" style="grid-column:10/13">Apr</div><div class="mh" style="grid-column:14/17">May</div><div class="mh" style="grid-column:18/21">Jun</div><div class="mh sm" style="grid-column:22/26"><span class="mini"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg></span> Summer</div><div class="trk" style="grid-row:2"></div><div class="trk" style="grid-row:3"></div><div class="trk" style="grid-row:4"></div><div class="trk" style="grid-row:5"></div><div class="ll" style="grid-row:2">R&amp;D</div><div class="ll" style="grid-row:3">Development</div><div class="ll" style="grid-row:4">Report</div>
+        <div class="bar rd" style="grid-column:3/7;grid-row:2">R&amp;D</div><div class="bar dev" style="grid-column:7/14;grid-row:3">Development</div><div class="bar rep-on" style="grid-column:3/14;grid-row:4">Report (ongoing)</div><div class="bar rep-fin" style="grid-column:14/19;grid-row:4">Final writing</div><div class="ms start" style="grid-column:3/9;grid-row:5"><i></i>Start</div><div class="ms end" style="grid-column:12/19;grid-row:5"><i></i>Delivery</div><div class="summer" style="grid-column:20/26;grid-row:5"><span class="mini"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg></span> Summer vacations</div>
+      </div>`,
+  },
+
   /* ---------- How we work ---------- */
   {
     id: 'tools', type: 'main', parent: 'root', label: 'How we work',
@@ -273,7 +285,9 @@ const HERO = { title: 'DevScope Academy', sub: 'ISEP · 2026', hint: '' };
 ------------------------------------------------------------------- */
 const PT = {
   // nós / etiquetas
-  'Porto to the world': 'Do Porto para o mundo', 'Perks': 'Regalias', 'Interns are treated like colleagues': 'Os estagiários são tratados como colaboradores',
+  'Porto to the world': 'Do Porto para o mundo', 'Roadmap': 'Roteiro', 'Start: February · Report delivered: end of May / early June': 'Início: fevereiro · Relatório entregue: fim de maio / início de junho',
+  'Feb': 'Fev', 'Apr': 'Abr', 'May': 'Mai', 'Summer': 'Verão', 'R&D': 'I&D', 'Report (ongoing)': 'Relatório (contínuo)', 'Final writing': 'Escrita final',
+  'Start': 'Início', 'Delivery': 'Entrega', 'Summer vacations': 'Férias de verão', 'Perks': 'Regalias', 'Interns are treated like colleagues': 'Os estagiários são tratados como colaboradores',
   'Free access to the office': 'Acesso livre ao escritório', 'Kitchen access': 'Acesso à copa', 'Fun events': 'Eventos de convívio',
   'A reward for every intern, matching their effort': 'Um prémio para cada estagiário, à altura do seu esforço',
   'Effort is what we value.': 'O esforço é o que valorizamos.', 'Projects': 'Projetos', 'What you will work on': 'Em que vais trabalhar',
