@@ -154,7 +154,8 @@ mark{background:var(--mark);color:#000;padding:0 .18em;border-radius:.08em}
 .stat{display:flex;align-items:baseline;gap:.35em;flex-wrap:wrap}
 .stat .num{font-size:clamp(90px,13vw,250px);font-weight:850;line-height:.9;letter-spacing:-.05em;color:#000;background:var(--mark);padding:0 .1em;border-radius:.06em}
 .stat .what{font-size:clamp(26px,3vw,58px);font-weight:700}
-.stat.sub{margin-top:1.2em}
+.substats{display:flex;flex-wrap:wrap;gap:.4em clamp(28px,4vw,80px);margin-top:1.2em}
+.stat.sub{margin-top:0}
 .stat.sub .num{font-size:clamp(50px,6vw,116px);background:none;color:var(--hot);padding:0}
 .stat.sub .what{font-size:clamp(20px,2vw,38px);color:var(--ink3);font-weight:550}
 
@@ -403,7 +404,10 @@ const NODES = [
     kicker: 'Academy footprint', title: '',
     html: `
       <div class="stat"><span class="num">72</span><span class="what">Academy Alumni</span></div>
-      <div class="stat sub"><span class="num">42%</span><span class="what">of DevScope</span></div>`,
+      <div class="substats">
+        <div class="stat sub"><span class="num">42%</span><span class="what">of DevScope</span></div>
+        <div class="stat sub"><span class="num">80%</span><span class="what">retention rate</span></div>
+      </div>`,
   },
   {
     id: 'roles', type: 'child', parent: 'footprint', label: 'Careers',
@@ -610,7 +614,10 @@ const PT_NODES = {
       <div class="wide-photo">${img('room', 'DevScope Academy')}</div>` },
   alumni: { html: `
       <div class="stat"><span class="num">72</span><span class="what">Alumni da Academy</span></div>
-      <div class="stat sub"><span class="num">42%</span><span class="what">da DevScope</span></div>` },
+      <div class="substats">
+        <div class="stat sub"><span class="num">42%</span><span class="what">da DevScope</span></div>
+        <div class="stat sub"><span class="num">80%</span><span class="what">taxa de retenção</span></div>
+      </div>` },
   share: { html: `<p class="quote">Quanto mais <mark>partilhas</mark>, mais <mark>aprendes</mark></p>` },
   road: { html: `
       <div class="wide-photo tall">${img('road')}</div>

@@ -121,7 +121,10 @@ const NODES = [
     kicker: 'Academy footprint', title: '',
     html: `
       <div class="stat"><span class="num">72</span><span class="what">Academy Alumni</span></div>
-      <div class="stat sub"><span class="num">42%</span><span class="what">of DevScope</span></div>`,
+      <div class="substats">
+        <div class="stat sub"><span class="num">42%</span><span class="what">of DevScope</span></div>
+        <div class="stat sub"><span class="num">80%</span><span class="what">retention rate</span></div>
+      </div>`,
   },
   {
     id: 'roles', type: 'child', parent: 'footprint', label: 'Careers',
@@ -328,7 +331,10 @@ const PT_NODES = {
       <div class="wide-photo">${img('room', 'DevScope Academy')}</div>` },
   alumni: { html: `
       <div class="stat"><span class="num">72</span><span class="what">Alumni da Academy</span></div>
-      <div class="stat sub"><span class="num">42%</span><span class="what">da DevScope</span></div>` },
+      <div class="substats">
+        <div class="stat sub"><span class="num">42%</span><span class="what">da DevScope</span></div>
+        <div class="stat sub"><span class="num">80%</span><span class="what">taxa de retenção</span></div>
+      </div>` },
   share: { html: `<p class="quote">Quanto mais <mark>partilhas</mark>, mais <mark>aprendes</mark></p>` },
   road: { html: `
       <div class="wide-photo tall">${img('road')}</div>
