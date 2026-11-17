@@ -52,6 +52,11 @@ const NODES = [
       </div>`,
   },
   {
+    id: 'world', type: 'child', parent: 'devscope', label: 'Porto to the world', wide: true,
+    kicker: 'DevScope', title: 'From <mark>Porto</mark> to the world',
+    html: `<div class="worldwrap">${WORLD_SVG}</div>`,
+  },
+  {
     id: 'clients', type: 'child', parent: 'devscope', label: 'Clients',
     kicker: 'DevScope', title: 'Who we work with',
     html: `<div class="paper">${img('clients', 'Client logos')}</div>`,
@@ -239,7 +244,7 @@ const HERO = { title: 'DevScope Academy', sub: 'ISEP · 2026', hint: '' };
 ------------------------------------------------------------------- */
 const PT = {
   // nós / etiquetas
-  'What we do': 'O que fazemos', 'Who we are': 'Quem somos', 'Where we are': 'Onde estamos', 'Clients': 'Clientes',
+  'Porto to the world': 'Do Porto para o mundo', 'What we do': 'O que fazemos', 'Who we are': 'Quem somos', 'Where we are': 'Onde estamos', 'Clients': 'Clientes',
   'Core competencies': 'Competências-chave', 'Innovation jumpstarter': 'Impulsionador de inovação',
   'Academy footprint': 'Impacto da Academy', 'Careers': 'Carreiras', 'Internship program': 'Programa de estágio',
   'Learning path': 'Percurso de aprendizagem', 'How it will happen': 'Como vai acontecer', 'How we work': 'Como trabalhamos',
@@ -281,5 +286,6 @@ const PT_NODES = {
   road: { html: `
       <div class="wide-photo tall">${img('road')}</div>
       <p class="lead">..Aproveita cada <mark>quilómetro</mark> do percurso de aprendizagem..</p>` },
+  world: { title: 'Do <mark>Porto</mark> para o mundo' },
   thanks: { title: '<span class="br">&lt;</span>Obrigado!<span class="br">&gt;</span>' },
 };

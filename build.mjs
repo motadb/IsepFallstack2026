@@ -20,7 +20,7 @@ const safe = s => s.replace(/<\/script/gi, '<\\/script');
 const html = read('src/template.html')
   .replace('/*__D3__*/', () => safe(read('src/d3.min.js')))
   .replace('/*__IMAGES__*/', () => 'const IMG = ' + JSON.stringify(images) + ';')
-  .replace('/*__VIDEO__*/', () => 'const VIDEOS = { devscope: ' + JSON.stringify(VIDEO) + ' };')
+  .replace('/*__VIDEO__*/', () => 'const VIDEOS = { devscope: ' + JSON.stringify(VIDEO) + ' };\nconst WORLD_SVG = ' + JSON.stringify(read('src/world.svg')) + ';')
   .replace('/*__CONTENT__*/', () => safe(read('src/content.js')));
 
 writeFileSync(join(root, 'index.html'), html);
