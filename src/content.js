@@ -178,12 +178,7 @@ const NODES = [
     kicker: 'Academy', title: 'Projects',
     html: `
       <p class="lead">What you will work on</p>
-      <div class="cards two big projects">
-        <div class="card row"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v6c0 1.7 3.1 3 7 3s7-1.3 7-3V6M5 12v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6"/></svg></span><b>Data</b></div>
-        <div class="card row"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="8" width="14" height="10" rx="2.5"/><path d="M12 4v4M9 13h.01M15 13h.01M3 12v2M21 12v2"/></svg></span><b>AI</b></div>
-        <div class="card row"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 5-3 8-7 10-4-2-7-5-7-10V6z"/><path d="M9.5 12l2 2 3.5-4"/></svg></span><b>Cybersecurity</b></div>
-        <div class="card row"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 8l-4 4 4 4M16 8l4 4-4 4M14 5l-4 14"/></svg></span><b>Dev</b></div>
-      </div>
+      <div class="hubwrap"><svg class="hub" viewBox="0 0 760 260" role="img" aria-label="AI"><path class="ln" d="M380 130L135 62"/><path class="ln" d="M380 130L135 198"/><path class="ln" d="M380 130L625 62"/><path class="ln" d="M380 130L625 198"/><circle class="hring r1" cx="380" cy="130" r="56"/><circle class="hring r2" cx="380" cy="130" r="56"/><circle class="hcore" cx="380" cy="130" r="56"/><text class="hai" x="380" y="146" text-anchor="middle">AI</text><g class="sat"><rect class="pill" x="10" y="32" width="250" height="60" rx="30"/><g class="ic" transform="translate(28 46.4) scale(1.3)"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v6c0 1.7 3.1 3 7 3s7-1.3 7-3V6M5 12v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6"/></g><text x="70" y="70">Data</text></g><g class="sat"><rect class="pill" x="10" y="168" width="250" height="60" rx="30"/><g class="ic" transform="translate(28 182.4) scale(1.3)"><path d="M12 3l7 3v5c0 5-3 8-7 10-4-2-7-5-7-10V6z"/><path d="M9.5 12l2 2 3.5-4"/></g><text x="70" y="206">Cybersecurity</text></g><g class="sat"><rect class="pill" x="500" y="32" width="250" height="60" rx="30"/><g class="ic" transform="translate(518 46.4) scale(1.3)"><path d="M8 8l-4 4 4 4M16 8l4 4-4 4M14 5l-4 14"/></g><text x="560" y="70">Dev</text></g><g class="sat"><rect class="pill" x="500" y="168" width="250" height="60" rx="30"/><g class="ic" transform="translate(518 182.4) scale(1.3)"><rect x="5" y="8" width="14" height="10" rx="2.5"/><path d="M12 4v4M9 13h.01M15 13h.01M3 12v2M21 12v2"/></g><text x="560" y="206">Agents</text></g></svg></div>
       <div class="teaser">
         <span class="tz-n">10</span><span class="tz-lt">&lt;</span><span class="tz-x" data-roll="11-29" aria-label="?">??</span><span class="tz-lt">&lt;</span><span class="tz-n">30</span>
         <div class="tz-txt"><b>Open spots</b><span>Guess the number</span></div>
@@ -294,7 +289,7 @@ const PT = {
   // nós / etiquetas
   'Porto to the world': 'Do Porto para o mundo', 'Roadmap': 'Roteiro', 'Start: February · Report delivered: end of May / early June': 'Início: fevereiro · Relatório entregue: fim de maio / início de junho',
   'Feb': 'Fev', 'Apr': 'Abr', 'May': 'Mai', 'Summer': 'Verão', 'R&D': 'I&D', 'Report (ongoing)': 'Relatório (contínuo)', 'Final writing': 'Escrita final',
-  'Start': 'Início', 'Delivery': 'Entrega', 'Summer vacations': 'Férias de verão', 'Perks': 'Regalias', 'Open spots': 'Vagas', 'Guess the number': 'Adivinha o número', 'Interns are treated like colleagues': 'Os estagiários são tratados como colaboradores',
+  'Start': 'Início', 'Delivery': 'Entrega', 'Summer vacations': 'Férias de verão', 'Perks': 'Regalias', 'Agents': 'Agentes', 'Open spots': 'Vagas', 'Guess the number': 'Adivinha o número', 'Interns are treated like colleagues': 'Os estagiários são tratados como colaboradores',
   'Free access to the office': 'Acesso livre ao escritório', 'Hybrid work model': 'Modelo de trabalho híbrido', 'Fun events': 'Eventos de convívio',
   'A reward for every intern, matching their effort': 'Um prémio para cada estagiário, à altura do seu esforço',
   'Effort is what we value.': 'O esforço é o que valorizamos.', 'Projects': 'Projetos', 'What you will work on': 'Em que vais trabalhar',
