@@ -683,7 +683,6 @@ function setLang(l, save = true) {
   set('prev', u.prev); set('next', u.next); set('theme', u.theme); set('lang', u.lang);
   document.getElementById('lang').textContent = u.btn;
   svg.attr('aria-label', u.map);
-  if (save) { try { localStorage.setItem('ds-lang', l); } catch (e) {} }
   render();
 }
 document.getElementById('lang').onclick = () => setLang(LANG === 'pt' ? 'en' : 'pt');
@@ -712,7 +711,6 @@ function videoURL(name) {
 function setTheme(light, save = true) {
   document.documentElement.classList.toggle('light', light);
   hydrate(document);
-  if (save) { try { localStorage.setItem('ds-theme', light ? 'light' : 'dark'); } catch (e) {} }
 }
 document.getElementById('theme').onclick = () => setTheme(!isLight());
 function render() {
@@ -774,9 +772,9 @@ let idleT; const wake = () => { document.body.classList.remove('idle'); clearTim
 addEventListener('mousemove', wake); addEventListener('keydown', wake); wake();
 
 /* ---------- arranque ---------- */
-{ let t = null; try { t = localStorage.getItem('ds-theme'); } catch (e) {} if (t === 'light' || /[?&]light\b/.test(location.search)) document.documentElement.classList.add('light'); }
+if (/[?&]light\b/.test(location.search)) document.documentElement.classList.add('light');   // arranca sempre em escuro (a menos que ?light)
 hydrate(document);
-{ let l = null; try { l = localStorage.getItem('ds-lang'); } catch (e) {} const m = /[?&]lang=(pt|en)\b/.exec(location.search); if (m) l = m[1]; if (l === 'pt') { LANG = 'pt'; } }
+if (/[?&]lang=pt\b/.test(location.search)) LANG = 'pt';   // arranca sempre em inglês (a menos que ?lang=pt)
 document.querySelector('#hero h1').innerHTML = HERO.title.replace(/(\S+)$/, '<span>$1</span>');
 document.querySelector('#hero p').textContent = HERO.sub;
 document.querySelector('#hero small').textContent = HERO.hint || '';
