@@ -224,7 +224,7 @@ const NODES = [
           <div><b>David Mota</b><span>DevScope Academy Manager</span>
           <span>david.mota@devscope.net</span><span>in/motadb</span></div>
         </div>
-        <div class="qr">${img('qr-linkedin', 'QR code: linkedin.com/in/motadb')}<span>linkedin.com/in/motadb</span></div>
+        <div class="qr"><b>Apply</b>${img('qr-apply', 'QR code: devscope.net/careers/curricular-internship')}<span>devscope.net/careers/<wbr>curricular-internship</span></div>
       </div>`,
   },
 ];
@@ -268,7 +268,7 @@ const PT = {
   // gráfico
   'Unknown': 'Desconhecido', 'Time': 'Tempo',
   // contactos
-  'DevScope Academy Manager': 'Responsável pela DevScope Academy',
+  'DevScope Academy Manager': 'Responsável pela DevScope Academy', 'Apply': 'Candidaturas',
 };
 const PT_NODES = {
   devscope: { html: `
