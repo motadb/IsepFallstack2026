@@ -200,6 +200,15 @@ mark{background:var(--mark);color:#000;padding:0 .18em;border-radius:.08em}
 .world .core{fill:var(--hot);stroke:var(--bg);stroke-width:2.5}
 .world .porto text{fill:var(--ink);font:750 24px var(--font)}
 @media (prefers-reduced-motion:reduce){.world .arc{animation:none;stroke-dashoffset:0}.world .end{animation:none;opacity:1}.world .ring{animation:none;opacity:.4}}
+.ico svg{width:1em;height:1em;display:block;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.card.row{flex-direction:row;align-items:center;gap:.9em}
+.card.row .ico{flex:none;margin:0}
+.card.wide{grid-column:1/-1}
+.card p{margin:.25em 0 0;color:var(--ink2);font-size:clamp(15px,1.3vw,25px)}
+.cards.perks .card b{font-size:clamp(18px,1.7vw,32px)}
+.cards.perks .card{padding:clamp(12px,1.2vw,22px)}
+.cards.projects .card b{font-size:clamp(24px,2.4vw,46px)}
+.cards.projects .ico{font-size:clamp(40px,4vw,76px)}
 html.light .paper{box-shadow:0 0 0 1px var(--cardline),0 10px 30px rgba(20,20,40,.08)}
 html.light .timeline .yr img{box-shadow:0 0 0 1px var(--cardline),0 4px 14px rgba(232,54,10,.25)}
 html.light .qr img{box-shadow:0 0 0 1px var(--cardline)}
